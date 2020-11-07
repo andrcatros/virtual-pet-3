@@ -75,3 +75,39 @@ describe('feed', () => {
         expect(pet.hunger).toEqual(0);
     });
 });
+describe('checkUp', () => {
+    it('informs if the pet needs walking', () => {
+        const pet = new Pet('Fido');
+
+        pet.fitness = 2;
+        pet.checkUp();
+
+        expect(pet.checkUp()).toBe('I need a walk');
+    });
+    it('informs if the pet is hungry', () => {
+        const pet = new Pet('Fido');
+
+        pet.hunger = 6;
+        pet.checkUp();
+
+        expect(pet.checkUp()).toBe('I am hungry');
+    });
+    it('informs if the pet is hungry and needs walking', () => {
+        const pet = new Pet('Fido');
+
+        pet.fitness = 2;
+        pet.hunger = 6;
+        pet.checkUp();
+
+        expect(pet.checkUp()).toBe('I am hungry AND I need a walk');
+    });
+    it('informs if the pet is doing well', () => {
+        const pet = new Pet('Fido');
+
+        pet.fitness = 18;
+        pet.hunger = 1;
+        pet.checkUp();
+
+        expect(pet.checkUp()).toBe('I feel great!');
+    });
+})
