@@ -110,4 +110,36 @@ describe('checkUp', () => {
 
         expect(pet.checkUp()).toBe('I feel great!');
     });
-})
+});
+describe('isAlive', () => {
+    it('checks to see if the pet is too old', () => {
+        const pet = new Pet('Fido');
+
+        pet.age = 31;
+
+        expect(pet.isAlive).toBe(false);
+    });
+    it('checks to see if the pet has starved', () => {
+        const pet = new Pet('Fido');
+
+        pet.hunger = 11;
+
+        expect(pet.isAlive).toBe(false);
+    });
+    it('checks to see if the pet has died from lack of exercise', () => {
+        const pet = new Pet('Fido');
+
+        pet.fitness = -1;
+
+        expect(pet.isAlive).toBe(false);
+    });
+    it('returns true if all the values are below minimum and maximum thresholds and the pet is alive', () => {
+        const pet = new Pet('Fido');
+
+        pet.age = 15;
+        pet.hunger = 4;
+        pet.fitness = 7;
+
+        expect(pet.isAlive).toBe(true);
+    });
+});
