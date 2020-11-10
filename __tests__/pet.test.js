@@ -14,6 +14,11 @@ describe('constructor', () => {
 
         expect(pet.age).toEqual(0);
     });
+    it('has an empty array of children', () => {
+        const pet = new Pet('Fido');
+
+        expect(pet.children).toEqual([]);
+    })
 });
 
 describe('growUp', () => {
@@ -169,5 +174,15 @@ describe('isAlive', () => {
         pet.fitness = 7;
 
         expect(pet.isAlive).toBe(true);
+    });
+});
+describe('adoptChild', () => {
+    it('adds a new pet within the children array of a parent pet', () => {
+        const parent = new Pet('Dave');
+        const child = new Pet('Amelia');
+
+        parent.adoptChild(child);
+
+        expect(parent.children[0]).toEqual(child);
     });
 });
